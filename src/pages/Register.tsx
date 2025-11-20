@@ -28,22 +28,15 @@ export function Register() {
         setIsLoading(true)
 
         try {
-            await register(formData.name, formData.email, formData.password)
-            toast.success('Account created! Please check your email to verify.')
-            navigate('/login')
+            const response = await register(formData.name, formData.email, formData.password)
+            toast.success('Account created successfully!')
+            // Redirect to verification sent page with email
+            navigate(`/verification-sent?email=${encodeURIComponent(formData.email)}`)
         } catch (error: any) {
-            console.error(error)
             if (error.message.includes('already registered but not verified')) {
                 toast.error('Account exists but not verified.')
-                const shouldResend = window.confirm('Account exists but not verified. Resend verification email?')
-                if (shouldResend) {
-                    try {
-                        await resendVerification(formData.email)
-                        toast.success('Verification email resent!')
-                    } catch (resendError: any) {
-                        toast.error(resendError.message || 'Failed to resend verification')
-                    }
-                }
+                // Redirect to verification sent page if account exists but not verified
+                navigate(`/verification-sent?email=${encodeURIComponent(formData.email)}`)
             } else {
                 toast.error(error.message || 'Failed to register')
             }

@@ -28,7 +28,6 @@ export function Login() {
                 navigate('/dashboard')
             }
         } catch (error: any) {
-            console.error(error)
             if (error.message.includes('not verified')) {
                 toast.error('Account not verified. Please check your email.')
                 // Optionally offer to resend verification here
@@ -81,11 +80,19 @@ export function Login() {
                             <Button className="w-full" type="submit" isLoading={isLoading}>
                                 Sign In
                             </Button>
-                            <div className="text-center text-sm text-muted-foreground">
-                                Don't have an account?{' '}
-                                <Link to="/register" className="text-primary hover:underline">
-                                    Sign up
-                                </Link>
+                            <div className="text-center text-sm text-muted-foreground space-y-2">
+                                <div>
+                                    Don't have an account?{' '}
+                                    <Link to="/register" className="text-primary hover:underline">
+                                        Sign up
+                                    </Link>
+                                </div>
+                                <div>
+                                    Need to verify your email?{' '}
+                                    <Link to="/resend-verification" className="text-primary hover:underline">
+                                        Resend verification email
+                                    </Link>
+                                </div>
                             </div>
                         </CardFooter>
                     </form>

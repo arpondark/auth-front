@@ -5,8 +5,10 @@ import { Home } from '@/pages/Home'
 import { Login } from '@/pages/Login'
 import { Register } from '@/pages/Register'
 import { VerifyEmail } from '@/pages/VerifyEmail'
+import { VerificationEmailSent } from '@/pages/VerificationEmailSent'
 import { RequestPasswordReset } from '@/pages/RequestPasswordReset'
 import { ResetPassword } from '@/pages/ResetPassword'
+import { ResendVerification } from '@/pages/ResendVerification'
 import { Dashboard } from '@/pages/Dashboard'
 
 function App() {
@@ -16,21 +18,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/api/auth/verify" element={<VerifyEmail />} /> {/* Handle backend redirect if any, or direct link */}
-        {/* Note: The backend sends links like /api/auth/verify?token=... 
-            If the backend serves the frontend, this path is fine. 
-            If they are separate, the email link should point to the frontend URL.
-            Assuming the user will configure the backend to point to frontend URL or 
-            we handle the path matching the backend's link structure if we are serving from same domain.
-            For now, I'll add a route that matches the backend's link structure just in case, 
-            but ideally it should be /verify-email. 
-            Let's stick to what the backend likely generates or redirect.
-            Actually, the user request says: "Use env to set the url of backend".
-            And the backend sends: ${app.url}/api/auth/verify?token=<token>
-            If app.url is the frontend URL, then we need to handle /api/auth/verify.
-        */}
+        <Route path="/verify" element={<VerifyEmail />} />
+        <Route path="/verify-email" element={<VerifyEmail />} /> {/* Alternative route for manual navigation */}
+        <Route path="/verification-sent" element={<VerificationEmailSent />} />
+        <Route path="/resend-verification" element={<ResendVerification />} />
         <Route path="/request-password-reset" element={<RequestPasswordReset />} />
-        <Route path="/api/auth/reset-password" element={<ResetPassword />} /> {/* Same logic as verify */}
+        <Route path="/reset-password" element={<ResetPassword />} />
         
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
