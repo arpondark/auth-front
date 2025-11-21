@@ -116,4 +116,46 @@ export function updateProfile(payload: {
   )
 }
 
+// Change Password API functions
+export function initChangePassword(oldPassword: string, newPassword: string) {
+  return request<{ success: boolean; message: string }>(
+    '/profile/change-password/init',
+    {
+      method: 'POST',
+      body: JSON.stringify({ oldPassword, newPassword }),
+    },
+  )
+}
+
+export function verifyChangePassword(otp: string, newPassword: string) {
+  return request<{ success: boolean; message: string }>(
+    '/profile/change-password/verify',
+    {
+      method: 'POST',
+      body: JSON.stringify({ otp, newPassword }),
+    },
+  )
+}
+
+// Change Email API functions
+export function initChangeEmail(newEmail: string, password: string) {
+  return request<{ success: boolean; message: string }>(
+    '/profile/change-email/init',
+    {
+      method: 'POST',
+      body: JSON.stringify({ newEmail, password }),
+    },
+  )
+}
+
+export function verifyChangeEmail(otp: string) {
+  return request<{ success: boolean; message: string }>(
+    '/profile/change-email/verify',
+    {
+      method: 'POST',
+      body: JSON.stringify({ otp }),
+    },
+  )
+}
+
 
