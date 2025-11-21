@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { getProfile, updateProfile } from '@/api'
 import toast from 'react-hot-toast'
 import { motion } from 'framer-motion'
-import { User, Mail, ShieldCheck, Loader2 } from 'lucide-react'
+import { User, Mail, ShieldCheck, Loader2, CheckCircle2 } from 'lucide-react'
 
 interface UserProfile {
   userId: string
@@ -98,12 +98,7 @@ export function Dashboard() {
             </CardHeader>
             <form onSubmit={handleUpdate}>
               <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">User ID</label>
-                  <div className="p-2 bg-secondary/50 rounded-md text-xs font-mono text-muted-foreground break-all">
-                    {profile?.userId}
-                  </div>
-                </div>
+               
                 <Input
                   label="Full Name"
                   value={formData.name}
@@ -187,5 +182,3 @@ export function Dashboard() {
     </div>
   )
 }
-
-import { CheckCircle2 } from 'lucide-react'

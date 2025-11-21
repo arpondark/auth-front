@@ -95,7 +95,7 @@ export function resetPassword(token: string, newPassword: string) {
 
 export function getProfile() {
   return request<{ userId: string; name: string; email: string; isAccountVerified: boolean }>(
-    '/profile',
+    '/profile/me',
     {
       method: 'GET',
     },
@@ -108,7 +108,7 @@ export function updateProfile(payload: {
   password?: string
 }) {
   return request<{ userId: string; name: string; email: string; isAccountVerified: boolean }>(
-    '/profile',
+    '/profile/me',
     {
       method: 'PUT',
       body: JSON.stringify(payload),
