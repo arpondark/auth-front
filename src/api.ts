@@ -1,4 +1,4 @@
-import { API_BASE_URL } from './config'
+import { API_BASE_URL, getGoogleOAuth2URL } from './config'
 
 export interface AuthResponse {
   email: string
@@ -10,6 +10,13 @@ export interface ApiError {
   message?: string
   details?: string
   [key: string]: unknown
+}
+
+// Google OAuth2 login - redirects to backend OAuth2 endpoint
+export function loginWithGoogle(): void {
+  // Get the Google OAuth2 authorization URL from backend API v1
+  const googleAuthUrl = getGoogleOAuth2URL()
+  window.location.href = googleAuthUrl
 }
 
 async function request<T>(

@@ -10,6 +10,8 @@ import { RequestPasswordReset } from '@/pages/RequestPasswordReset'
 import { ResetPassword } from '@/pages/ResetPassword'
 import { ResendVerification } from '@/pages/ResendVerification'
 import { Dashboard } from '@/pages/Dashboard'
+import { OAuth2Redirect } from '@/pages/OAuth2Redirect'
+import { OAuth2Debug } from '@/pages/OAuth2Debug'
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/resend-verification" element={<ResendVerification />} />
         <Route path="/request-password-reset" element={<RequestPasswordReset />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/oauth2/redirect" element={<OAuth2Redirect />} />
+        <Route path="/oauth2/debug" element={<OAuth2Debug />} />
         
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
